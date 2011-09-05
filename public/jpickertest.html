@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		
+		<link rel="Stylesheet" type="text/css" href="jpicker/css/jpicker-1.1.6.min.css">
+		<link rel="Stylesheet" type="text/css" href="jpicker/jPicker.css">
+		<script src="js/libs/jquery-1.6.1.min.js"></script>
+		<script src="jpicker/jpicker-1.1.6.js"></script>
+		
+	</head>
+	<body>
+		
+		<script type="text/javascript">        
+		  $(document).ready(
+		    function()
+		    {
+		      $('#Binded').jPicker({
+				
+					window:{
+						
+						effects:
+						    {
+						      type: 'slide', // effect used to show/hide an expandable picker. Acceptable values "slide", "show", "fade"
+						      speed:
+						      {
+						        show: 10, // duration of "show" effect. Acceptable values are "fast", "slow", or time in ms
+						        hide: 20 // duration of "hide" effect. Acceptable value are "fast", "slow", or time in ms
+						      }
+						    },
+						    position:
+						    {
+						      x: 10, // acceptable values "left", "center", "right", "screenCenter", or relative px value
+						      y: 10, // acceptable values "top", "bottom", "center", or relative px value
+						    }
+					}
+				});
+		    });
+		</script>
+		<input id="Binded" type="text" value="e2ddcf" />
+		
+	</body>
+</html>

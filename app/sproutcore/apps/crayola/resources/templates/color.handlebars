@@ -1,0 +1,4 @@
+<h1>Colors</h1>
+{{#collection Crayola.ColorsCollectionView contentBinding="Crayola.colorsController" tagName="div" }}
+  <font {{bindAttr color="content.color"}}>{{content.name}} {{content.color}}</font>
+{{/collection}}

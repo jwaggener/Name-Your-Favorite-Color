@@ -1,0 +1,17 @@
+<H1>Hello World</H1>
+<table>
+  <tr>
+    <th>blah blah</th>
+    <th>blah blah</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
+<% @colors.each do |color| %>
+  <tr>
+    <td><%= color.name %></td>
+    <td><%= color.color %></td>
+  </tr>
+<% end %>
+</table>

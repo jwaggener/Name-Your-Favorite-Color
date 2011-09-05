@@ -1,0 +1,16 @@
+/* ==========================================================================
+*  Project:   Crayola
+*  Copyright: @2011 My Company, Inc.
+*  ==========================================================================
+*/
+
+.sc-view {
+  position: relative;
+  overflow: visible;
+}
+
+.color {
+	color: #00ccff;
+	float: left;
+	margin: 5px 5px;
+}
