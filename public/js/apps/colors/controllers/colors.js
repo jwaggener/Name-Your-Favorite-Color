@@ -19,7 +19,6 @@ App.Controllers.Colors = Backbone.Router.extend({
     },
     
     index: function() {
-		console.log("index controller");
         var colors = new App.Collections.Colors();
 		colors.fetch({
 		    success: function() {
@@ -32,7 +31,6 @@ App.Controllers.Colors = Backbone.Router.extend({
     },
     
     newColor: function() {
-		console.log("newcolor");
         new App.Views.Edit({ model: new Color() });
     }
 });

@@ -23,13 +23,13 @@ class ColorController < ApplicationController
   end
   
   def create
-    color = Color.create! ( :name => params[:name], :color=>params[:color] ) 
+    color = Color.create! :name => params[:name], :color=>params[:color] 
     render :json => color
   end
   
   def update
     color = Color.find(params[:id])
-    color.update_attributes! ( :name => params[:name], :color=>params[:color] ) 
+    color.update_attributes! :name => params[:name], :color=>params[:color]
     render :json => color
   end
     

@@ -12,11 +12,6 @@ App.Views.ColorPicker = Backbone.View.extend({
     },
 	
 	save: function() {
-		
-		console.log("save colorpicker");
-		console.log("this.model",this.model);
-		console.log("this.$('[name=name]').val()",this.$('[name=name]').val());
-		console.log("this.$('[name=color]').val()",this.$('[name=color]').val());
         var self = this;
         //var msg = this.model.isNew() ? 'Successfully created!' : "Saved!";
         
