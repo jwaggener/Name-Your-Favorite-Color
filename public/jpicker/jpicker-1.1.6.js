@@ -1988,7 +1988,7 @@
         },
       images:
         {
-          clientPath: '/jPicker/images/', /* Path to image files */
+          clientPath: '/jpicker/images/', /* Path to image files */
           colorMap:
           {
             width: 256,
