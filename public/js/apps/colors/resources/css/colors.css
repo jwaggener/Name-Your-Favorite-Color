@@ -39,8 +39,13 @@ body{
 }
 .color{
 	margin: 10px;
+	height:130px;
 	width:200px;
+	vertical-align: bottom;
 	float:left;
+}
+.color-name{
+	height: 100px;
 }
 .color-swatch{
 	width:100%;

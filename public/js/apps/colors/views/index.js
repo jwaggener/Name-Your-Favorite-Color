@@ -26,13 +26,9 @@ App.Views.Index = Backbone.View.extend({
 	handle_click: function( target ){
 		var color, width, height;
 		width = $("#colors").width();
-		//height = width/
 		var itemsPerRow = Math.floor( width/$(".color").width() ) ;
 		var numRows = Math.ceil( $("#colors").children().length/itemsPerRow );
 		height = numRows * $(".color").outerHeight( true );
-		console.log( 'color height',$(".color").outerHeight(true) ) ;
-		console.log("numRows",numRows)
-		//console.log("width",$("#colors").css("width"));
 		color = $(target.currentTarget).css("background-color");
 		new App.Views.Canvas({ color: color, width: width, height: height });
 	}
