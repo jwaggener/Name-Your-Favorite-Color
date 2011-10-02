@@ -35,7 +35,7 @@ App.Views.ColorPicker = Backbone.View.extend({
     },
 
 	render: function() {
-        var out = "<form><input id='NameColor' name='name' type='text' value='Name a Color'/><button>Submit</button><input id='Binded' name='color' class='color-swatch' style='height:93px' type='text' value='e2ddcf' /></form>"
+        var out = "<form><input id='NameColor' name='name' type='text' value='Name a Color'/><button>Submit</button><input id='Binded' name='color' class='color-swatch' style='height:155px' type='text' value='e2ddcf' /></form>"
         $(this.el).html(out);
 		this.$('#Binded').jPicker({
 				window:{

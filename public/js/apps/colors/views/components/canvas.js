@@ -12,11 +12,10 @@ App.Views.Canvas = Backbone.View.extend({
     },
 
 	render: function(){
+		this.name = this.options.name;
 		if(this.options.color)
 		{
 			this.color = this.options.color;
-			this.width = this.options.width;
-			this.height = this.options.height;
 			this.destroyCanvas();
 			this.createCanvas(); 
 			this.paintCanvas();
@@ -25,7 +24,7 @@ App.Views.Canvas = Backbone.View.extend({
 	},
 	
 	createCanvas: function(){
-		$(this.el).html("<canvas id='canvas'/>");
+		$(this.el).html("<canvas id='canvas' width='" + $(window).width() + "' height='" + $(window).height() + "' />");
 		$("#app").append(this.el);
 	},
 	
@@ -35,14 +34,24 @@ App.Views.Canvas = Backbone.View.extend({
 	},
 	
 	paintCanvas: function(){
-		this.$('#canvas').width = this.width;
-		this.$('#canvas').css ("height", this.height );
+		
+		console.log( $(window).width() );
+		console.log( $(window).height() );
+		
+		//this.$('#canvas').width = $(window).width();
+		//this.$('#canvas').css ("height", $(window).height() );
+		this.$('#canvas').css ("margin-top", $(window).scrollTop() - $("#header").height() );
 		var context = this.$('#canvas')[0].getContext("2d");
 		context.fillStyle = this.color;
-		//context.strokeStyle = "#ff0000";
 		
-		console.log( "canvas height",this.$('#canvas').css ("height") );
-		context.fillRect(0, 0, this.width, this.$('#canvas').height() );
-		//context.strokeRect(0,  0, 500, 500);
+		context.fillRect(0, 0, $(window).width(), $(window).height() );
+		
+		context.fillStyle    = '#fff';
+		context.font         = '30pt ChunkFiveRoman';
+		context.textAlign 	= 'center';
+		context.textBaseline = 'middle';
+		context.fillText  ( this.name, $(window).width()/2, $(window).height()/2 );
+		//context.font         = 'bold 30px sans-serif';
+		//context.strokeText('Hello world!', 0, 50);
 	}
 })

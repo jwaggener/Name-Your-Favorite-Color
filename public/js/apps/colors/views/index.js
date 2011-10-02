@@ -1,7 +1,7 @@
 App.Views.Index = Backbone.View.extend({
 	
 	events:{
-		"click .color-swatch":"handle_click"	
+		"click .color":"handle_click"	
 	},
 	
     initialize: function() {
@@ -19,17 +19,14 @@ App.Views.Index = Backbone.View.extend({
             out = "<h3>No colors! <a href='#new'>Create one</a></h3>";
         }
         $(this.el).html(out);
-		this.$('.color:first').before(colorpicker);
+		//this.$('.color:first').before(colorpicker);
         $('#app').html(this.el);
     },
 	
 	handle_click: function( target ){
-		var color, width, height;
-		width = $("#colors").width();
-		var itemsPerRow = Math.floor( width/$(".color").width() ) ;
-		var numRows = Math.ceil( $("#colors").children().length/itemsPerRow );
-		height = numRows * $(".color").outerHeight( true );
+		var color, name
 		color = $(target.currentTarget).css("background-color");
-		new App.Views.Canvas({ color: color, width: width, height: height });
+		name = $(target.currentTarget).attr("data-name");
+		new App.Views.Canvas({ color: color, name: name });
 	}
 });

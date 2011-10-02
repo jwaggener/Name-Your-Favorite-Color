@@ -23,9 +23,6 @@
 		<script src="js/apps/colors/views/components/colorpicker.js"></script>
 		<script src="js/apps/colors/views/components/canvas.js"></script>
 		<!--<script src="js/apps/colors/views/components/interaction.js"></script>-->
-		
-		
-		
 	</head>
 	<body>
 		
@@ -55,8 +52,12 @@
 			Handlebars.registerHelper('color-list', function(items, fn) {
 			  var out = "<div id='colors'>";
 			 for(i=items.length; i--;) {
-			     out = out + "<div class='color'>" + fn(items[i]) +
-							"<div style='background-color:#" + items[i].get("color").color +"' class='color-swatch'></div>"
+			     out = out + "<div class='color' style='background-color:#" + items[i].get("color").color + "'"
+						   + "data-name='" + items[i].get("color").name
+						   + "'>"
+								+ "<div class='color-name'>"
+									+ "<span>" + items[i].get("color").name + "</span>"
+								+ "</div>"
 						  + "</div>";
 			  }
 			  return out + "</div>";
@@ -65,7 +66,7 @@
 		
 		<!--handlebars templates-->
 		<script id="colors-template" type="text/x-handlebars-template">
-			{{#color-list models}}{{attributes.color.name}}{{/color-list}}
+			{{#color-list models}}{{/color-list}}
 		</script>
 		
 		<script id="colors-edit" type="text/x-handlebars-template">
