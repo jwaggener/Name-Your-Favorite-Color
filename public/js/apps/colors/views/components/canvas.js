@@ -35,19 +35,16 @@ App.Views.Canvas = Backbone.View.extend({
 	
 	paintCanvas: function(){
 		
-		console.log( $(window).width() );
-		console.log( $(window).height() );
-		
-		//this.$('#canvas').width = $(window).width();
-		//this.$('#canvas').css ("height", $(window).height() );
 		this.$('#canvas').css ("margin-top", $(window).scrollTop() - $("#header").height() );
 		var context = this.$('#canvas')[0].getContext("2d");
 		context.fillStyle = this.color;
 		
 		context.fillRect(0, 0, $(window).width(), $(window).height() );
 		
-		context.fillStyle    = '#fff';
-		context.font         = '30pt ChunkFiveRoman';
+		console.log( "colorValue( this.color)", colorValue( this.color) );
+		
+		context.fillStyle  = ( colorValue( this.color) > 200 ) ? '#333' : '#fff';
+		context.font         = '40pt ChunkFiveRoman';
 		context.textAlign 	= 'center';
 		context.textBaseline = 'middle';
 		context.fillText  ( this.name, $(window).width()/2, $(window).height()/2 );

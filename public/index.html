@@ -14,6 +14,7 @@
 		<script src="js/libs/underscore.js"></script>
 		<script src="js/libs/backbone.js"></script>
 		<script src="jpicker/jpicker-1.1.6.js"></script>
+		<script src="js/apps/colors/utilities/colorutils.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/apps/colors/models/color.js"></script>
 		<script src="js/apps/colors/collections/colors.js"></script>
@@ -50,13 +51,19 @@
 		<!--register handlebars templates-->
 		<script>
 			Handlebars.registerHelper('color-list', function(items, fn) {
+			var textColor
 			  var out = "<div id='colors'>";
 			 for(i=items.length; i--;) {
+				 textColor = ( colorValue( "#" + items[i].get("color").color ) > 220 ) ? "#999" : "#fff";
+				console.log( colorValue( "#" + items[i].get("color").color ) );
+				console.log( "textColor", textColor );
 			     out = out + "<div class='color' style='background-color:#" + items[i].get("color").color + "'"
 						   + "data-name='" + items[i].get("color").name
 						   + "'>"
 								+ "<div class='color-name'>"
-									+ "<span>" + items[i].get("color").name + "</span>"
+									+ "<span " 
+									+ "style='color:" + textColor + "' >"
+									+ items[i].get("color").name + "</span>"
 								+ "</div>"
 						  + "</div>";
 			  }
