@@ -1,9 +1,12 @@
 App.Views.ColorPicker = Backbone.View.extend({
 	
-	className: 'color-picker',
+	id: "colorPickerContainer",
+	
+	className: 'mycolorpicker',
 	
 	events: {
-        "submit form": "save"
+        "submit form": "save",
+		"click #cancel": "destroyColorPicker"
     },
 
 	initialize: function() {
@@ -35,27 +38,36 @@ App.Views.ColorPicker = Backbone.View.extend({
     },
 
 	render: function() {
-        var out = "<form><input id='NameColor' name='name' type='text' value='Name a Color'/><button>Submit</button><input id='Binded' name='color' class='color-swatch' style='height:155px' type='text' value='e2ddcf' /></form>"
+		var out
+		//out = "<div class='shim'></div>";
+		
+		//out = "<div class='dialog'>blah blahs";
+		out = "<div class='dialog'>"
+		out += "<div class='leftCol'><div id='jPicker' /></div>"
+		out += "<div class='rightCol'><h2>< Choose a Color.</h2><h2>Give it a Name:</h2><h3>Slide the bar to submit.</h3><a id='cancel'>cancel</a></div>"
+		out += "<div class='f'/>"
+		out += "</div>"
+		
+		/*out += "<div class='leftCol'>";
+		out+= "test test test tes t"
+		//out += "<div id='jPicker' />";
+		out += "</div>";
+		
+		out += "<div class='rightCol'>";
+		out += "<a id='cancel'>cancel</a>" //+ "jklasdjfklasjdfkljaskldjfklajsdklfjaskljflasdkj"
+		out += "</div>";*/
+
+		$("#colors").css("opacity", .5);
         $(this.el).html(out);
-		this.$('#Binded').jPicker({
-				window:{
-					
-					effects:
-					    {
-					      type: 'slide', // effect used to show/hide an expandable picker. Acceptable values "slide", "show", "fade"
-					      speed:
-					      {
-					        show: 10, // duration of "show" effect. Acceptable values are "fast", "slow", or time in ms
-					        hide: 20 // duration of "hide" effect. Acceptable value are "fast", "slow", or time in ms
-					      }
-					    },
-					    position:
-					    {
-					      x: 10, // acceptable values "left", "center", "right", "screenCenter", or relative px value
-					      y: 10, // acceptable values "top", "bottom", "center", or relative px value
-					    }
-				}
-			
-		});
-    }
+		this.$('#jPicker').jPicker();
+		$("#app").append(this.el);
+		
+		//('#jPicker').jPicker.List[index]
+    },
+	
+	destroyColorPicker: function(){
+		$("#colors").css("opacity", 1);
+		$('#colorPickerContainer').remove();
+		$(this.el).html("<div/>");
+	}
 })

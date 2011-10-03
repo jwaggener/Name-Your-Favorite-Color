@@ -8,6 +8,7 @@ App.Views.Canvas = Backbone.View.extend({
 	},
 	
 	initialize: function() {
+		_.bindAll(this);
         this.render();
     },
 
@@ -26,6 +27,7 @@ App.Views.Canvas = Backbone.View.extend({
 	createCanvas: function(){
 		$(this.el).html("<canvas id='canvas' width='" + $(window).width() + "' height='" + $(window).height() + "' />");
 		$("#app").append(this.el);
+		$(window).bind( 'scroll', this.handleScroll );
 	},
 	
 	destroyCanvas: function(){
@@ -50,5 +52,10 @@ App.Views.Canvas = Backbone.View.extend({
 		context.fillText  ( this.name, $(window).width()/2, $(window).height()/2 );
 		//context.font         = 'bold 30px sans-serif';
 		//context.strokeText('Hello world!', 0, 50);
+	},
+	
+	handleScroll: function(){
+		$(window).unbind( 'scroll', this.handleScroll );
+		this.destroyCanvas();
 	}
 })
