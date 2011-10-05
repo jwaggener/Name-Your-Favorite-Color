@@ -74,7 +74,8 @@ button{
 }
 .choose-color{
 	font-size: 24pt;
-	background: url('black_and_gray_stripes.png') repeat;
+	background-image: url('black_and_gray_stripes.png'), url('stripes.png');
+	background-repeat: repeat;
 }
 .color-name span{
 	display: table-cell;

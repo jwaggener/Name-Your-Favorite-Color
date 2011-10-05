@@ -4,6 +4,8 @@ App.Views.Index = Backbone.View.extend({
 		"click .color":"handle_click",
 		"mouseover .color":"handle_mouseover",
 		"mouseout .color":"handle_mouseout",
+		"mouseover #chooseColor":"handle_mouseoverChoose",
+		"mouseout #chooseColor":"handle_mouseoutChoose",
 		"click #chooseColor":"handle_chooseColor"	
 	},
 	
@@ -29,15 +31,26 @@ App.Views.Index = Backbone.View.extend({
 	
 	handle_mouseover: function( target ){
 		
-		console.log("mouseover");
-		//console.log( $(target.currentTarget).find("span").css("color", "#ff0") );//use the compliment instead
-		//$(target.currentTarget).css("width", "250px");
+		//var c = compliment( $(target.currentTarget).css("background-color") )
+		//$(target.currentTarget).find("span").css("color", "#" + c );//use the compliment instead
+		$(target.currentTarget).find("span").css("text-decoration", "underline" );
 	},
 	
 	handle_mouseout: function( target ){
 		
-		console.log("mouseout");
-		//$(target.currentTarget).css("color", "");
+		//var c = ( colorValue( $(target.currentTarget).css("background-color") ) > 220 ) ? "#999" : "#fff";
+		//$(target.currentTarget).find("span").css("color", c );
+		$(target.currentTarget).find("span").css("text-decoration", "none" );
+	},
+	
+	handle_mouseoverChoose: function(){
+		console.log("choose color rollover")
+		this.$('#chooseColor').css('color', '#0084ff');// 'js/apps/colors/resources/css/stripes.png');
+	},
+	
+	handle_mouseoutChoose: function(){
+		console.log("choose color rollout");
+		this.$('#chooseColor').css('color', '#fff');
 	},
 	
 	handle_click: function( target ){

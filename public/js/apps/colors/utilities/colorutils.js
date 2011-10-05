@@ -53,7 +53,7 @@ function toRGBhash(color)
 	}
 	return { r:red, g:green, b:blue };
 }
-
+//returns a result between 0 - 255
 function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
 function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16)}
 function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16)}
