@@ -52,8 +52,8 @@ App.Views.ColorPicker = Backbone.View.extend({
 	
 		out += "<div id='jPicker' /></div>"
 		out += "<div class='rightCol'><h2>< Choose a Color.</h2><h2>Give it a Name:</h2>"
-		out += "<form><p><input type='text' name='colorName' /></p>"
-		out += "<button>Name Your Color</button><a id='cancel'>cancel</a></form>"
+		out += "<form><p><input type='text' name='colorName' class='input' /></p>"
+		out += "<span style='margin-right:8px'><button><h3>Name Your Color</h3></button></span><a id='cancel' class='cancel' >cancel</a></form>"
 		out += "</div>"
 		out += "<div class='clear'/>"
 		out += "</div>"
