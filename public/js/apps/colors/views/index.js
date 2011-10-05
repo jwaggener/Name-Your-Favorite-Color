@@ -2,6 +2,8 @@ App.Views.Index = Backbone.View.extend({
 	
 	events:{
 		"click .color":"handle_click",
+		"mouseover .color":"handle_mouseover",
+		"mouseout .color":"handle_mouseout",
 		"click #chooseColor":"handle_chooseColor"	
 	},
 	
@@ -25,11 +27,25 @@ App.Views.Index = Backbone.View.extend({
         $('#app').html(this.el);
     },
 	
+	handle_mouseover: function( target ){
+		
+		console.log("mouseover");
+		//console.log( $(target.currentTarget).find("span").css("color", "#ff0") );//use the compliment instead
+		//$(target.currentTarget).css("width", "250px");
+	},
+	
+	handle_mouseout: function( target ){
+		
+		console.log("mouseout");
+		//$(target.currentTarget).css("color", "");
+	},
+	
 	handle_click: function( target ){
 		if ( $(target.currentTarget).attr("id") == "chooseColor" ) return;
 		var color, name
 		color = $(target.currentTarget).css("background-color");
-		name = $(target.currentTarget).attr("data-name");
+		name = $(target.currentTarget).find('span').html();
+		console.log( "name",name)
 		new App.Views.Canvas({ color: color, name: name });
 	},
 	

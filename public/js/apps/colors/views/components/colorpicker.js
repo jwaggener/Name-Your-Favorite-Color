@@ -17,8 +17,11 @@ App.Views.ColorPicker = Backbone.View.extend({
 	save: function() {
         var self = this;
         //var msg = this.model.isNew() ? 'Successfully created!' : "Saved!";
-        
-        this.model.save({ name: this.$('[name=name]').val(), color: this.$('[name=color]').val() }, {
+		console.log( $("#jPicker") )
+        console.log( $.jPicker.List[0].color.active.val('hex') );
+		console.log( this.$('[name=colorName]').val() );
+
+        this.model.save({ name: this.$('[name=colorName]').val(), color: $.jPicker.List[0].color.active.val('hex') }, {
             success: function(model, resp) {
                 //new App.Views.Notice({ message: msg });
                 
@@ -30,7 +33,7 @@ App.Views.ColorPicker = Backbone.View.extend({
                 //Backbone.history.saveLocation('color/' + model.id);
             },
             error: function() {
-                new App.Views.Error();
+                console.log("There was an error in saving the color.");
             }
         });
         
@@ -43,9 +46,16 @@ App.Views.ColorPicker = Backbone.View.extend({
 		
 		//out = "<div class='dialog'>blah blahs";
 		out = "<div class='dialog'>"
-		out += "<div class='leftCol'><div id='jPicker' /></div>"
-		out += "<div class='rightCol'><h2>< Choose a Color.</h2><h2>Give it a Name:</h2><h3>Slide the bar to submit.</h3><a id='cancel'>cancel</a></div>"
-		out += "<div class='f'/>"
+		out += "<div class='leftCol'>"
+
+		
+	
+		out += "<div id='jPicker' /></div>"
+		out += "<div class='rightCol'><h2>< Choose a Color.</h2><h2>Give it a Name:</h2>"
+		out += "<form><p><input type='text' name='colorName' /></p>"
+		out += "<button>Name Your Color</button><a id='cancel'>cancel</a></form>"
+		out += "</div>"
+		out += "<div class='clear'/>"
 		out += "</div>"
 		
 		/*out += "<div class='leftCol'>";

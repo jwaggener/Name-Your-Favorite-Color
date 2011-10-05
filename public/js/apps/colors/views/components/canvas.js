@@ -43,12 +43,11 @@ App.Views.Canvas = Backbone.View.extend({
 		
 		context.fillRect(0, 0, $(window).width(), $(window).height() );
 		
-		console.log( "colorValue( this.color)", colorValue( this.color) );
-		
 		context.fillStyle  = ( colorValue( this.color) > 200 ) ? '#333' : '#fff';
 		context.font         = '40pt ChunkFiveRoman';
 		context.textAlign 	= 'center';
 		context.textBaseline = 'middle';
+		
 		context.fillText  ( this.name, $(window).width()/2, $(window).height()/2 );
 		//context.font         = 'bold 30px sans-serif';
 		//context.strokeText('Hello world!', 0, 50);

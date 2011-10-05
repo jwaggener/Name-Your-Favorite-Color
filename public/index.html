@@ -28,7 +28,7 @@
 	<body>
 		
 		<div id="header">
-			<div id="background-black" class="bg-swatch"></div><div id="background-white" class="bg-swatch"></div><div id="background-gray" class="bg-swatch"></div>
+			<a href="mailto:john.waggener@gmail.com" style="float:right;color:#fff;margin-right:65px">contact</a>
 			<div style="clear:both"></div>
 		</div>
 		
@@ -56,7 +56,6 @@
 			 for(i=items.length; i--;) {
 				 textColor = ( colorValue( "#" + items[i].get("color").color ) > 220 ) ? "#999" : "#fff";
 			     out = out + "<div class='color' style='background-color:#" + items[i].get("color").color + "'"
-						   + "data-name='" + items[i].get("color").name
 						   + "'>"
 								+ "<div class='color-name'>"
 									+ "<span " 
