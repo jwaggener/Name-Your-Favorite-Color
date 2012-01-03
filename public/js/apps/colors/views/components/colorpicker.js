@@ -16,7 +16,6 @@ App.Views.ColorPicker = Backbone.View.extend({
 	
 	save: function() {
         var self = this;
-		alert( "window.fbUserID " +  window.fbUserID );
 
         this.model.save({ name: this.$( '[name=colorName]').val(), color: $.jPicker.List[0].color.active.val('hex'), fb_id: window.fbUserID }, {
             success: function(model, resp) {
