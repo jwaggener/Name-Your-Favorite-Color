@@ -1,16 +1,20 @@
 class ColorController < ApplicationController
              
   def index
-    if ( params.has_key?(:index) && params.has_key?(:length) )
-      @colors = Color.limit(params[:length]).offset(params[:index])
-    else
-      @colors = Color.all
+    @length = 100
+    @index = Color.count - @length
+    if ( params.has_key?(:index) )
+      @index = params[ :index ]
     end
+    if( params.has_key?(:length) )
+      @length = params[ :length ]
+    end
+    @colors = Color.limit( @length ).offset( @index )
     @format = :json;
     if ( params[:format] == 'xml' ) 
         @format = :xml
     end
-    render @format => @colors, :callback => params[:callback], :only => [ :id, :name, :color, :created_at ]
+    render @format => @colors, :callback => params[:callback], :only => [ :id, :name, :color, :created_at, :user_id ]
   end
   
   def show
@@ -23,7 +27,18 @@ class ColorController < ApplicationController
   end
   
   def create
-    color = Color.create! :name => params[:name], :color=>params[:color] 
+    if params[:fb_id]
+      user = User.find_by_fb_id(params[:fb_id])
+      logger.info( "hello world  #{user.to_s} " )
+      if( !user )
+        logger.info( "creating a new user" )
+        #create a new user and set the id
+        user = User.create! :fb_id => params[:fb_id]
+      end
+      user_id = user.id
+      logger.info( "user id #{user_id}" )
+    end
+    color = Color.create! :name => params[:name], :color=>params[:color], :user_id=>user_id 
     render :json => color
   end
   

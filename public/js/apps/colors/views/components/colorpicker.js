@@ -16,12 +16,9 @@ App.Views.ColorPicker = Backbone.View.extend({
 	
 	save: function() {
         var self = this;
-        //var msg = this.model.isNew() ? 'Successfully created!' : "Saved!";
-		console.log( $("#jPicker") )
-        console.log( $.jPicker.List[0].color.active.val('hex') );
-		console.log( this.$('[name=colorName]').val() );
+		alert( "window.fbUserID " +  window.fbUserID );
 
-        this.model.save({ name: this.$('[name=colorName]').val(), color: $.jPicker.List[0].color.active.val('hex') }, {
+        this.model.save({ name: this.$( '[name=colorName]').val(), color: $.jPicker.List[0].color.active.val('hex'), fb_id: window.fbUserID }, {
             success: function(model, resp) {
                 //new App.Views.Notice({ message: msg });
                 
@@ -69,9 +66,28 @@ App.Views.ColorPicker = Backbone.View.extend({
 
 		$("#colors").css("opacity", .5);
         $(this.el).html(out);
-		this.$('#jPicker').jPicker();
+
+		var d = "0000ff";
+		
+		this.$('#jPicker').jPicker(
+			{
+				color: { active: new $.jPicker.Color({ hex: d }) }
+			},
+			function(color, context)
+			{
+	          var all = color.val('all');
+	        },
+			function(color, context)
+			{
+				var hex = color.val('hex');
+				var cv = ( colorValue("#" + hex ) > 180 ) ? "#000" : "#fff";
+				$('[name=colorName]').css( "color", cv );
+				$('[name=colorName]').css("background-color", "#"+hex );
+	        }
+		);
 		$("#app").append(this.el);
 		
+		$('[name=colorName]').css("background-color", "#"+d );
 		//('#jPicker').jPicker.List[index]
     },
 	

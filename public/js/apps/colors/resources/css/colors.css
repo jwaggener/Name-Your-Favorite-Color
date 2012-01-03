@@ -86,7 +86,9 @@ button{
 	background-color: #fff;
 	border: none;
 	font-family: 'ChunkFiveRoman', Arial, sans-serif;
-	font-size: 14pt;
+	font-size: 20pt;
+	width: 275px;
+	text-align: center;
 }
 .cancel{
 	text-decoration: underline;

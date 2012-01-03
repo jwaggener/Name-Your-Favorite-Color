@@ -29,6 +29,77 @@
 	<body>
 		
 		<div id="header">
+			
+			<div id="fb-root"></div>
+			<script>
+				window.fbUserID = null;//store user id for app calls
+				//localhost app id is 222671394477584
+				//production app id is 327555587268424
+				var appId = ( document.domain.indexOf("localhost") != -1 ) ? '222671394477584' : '327555587268424' ;
+		        window.fbAsyncInit = function() {
+		          FB.init({
+		            appId      : appId,
+					channelUrl : 'http://' + document.domain + '/channel.html',
+		            status     : true, 
+		            cookie     : true,
+		            xfbml      : true,
+		            oauth      : true
+		          });
+				
+				//listen for changes and change out the html appropriately
+				FB.Event.subscribe('auth.authResponseChange', function( response ) {
+					if( response.status === 'connected' ){
+						$('#fbLogin').html('');
+						window.fbUserID = response.authResponse.userID;
+						//$('#fbLogin').html( '<a href="#" onclick="FB.logout();">Logout</a><br/>' );
+					}else{
+						$('#fbLogin').html( '<div class="fb-login-button" data-scope="">Login with Facebook</div>' );
+						window.fbUserID = null;
+					}
+				});
+
+				//listen for login
+				FB.Event.subscribe('auth.login', function(response) {
+
+				});
+				
+				//get the login status on fbinit
+				FB.getLoginStatus( function(response) { 
+					if( response.status === 'connected' ){
+						window.fbUserID = response.authResponse.userID;
+						$('#fbLogin').html( '' );
+						//$('#fbLogin').html( '<a href="#" onclick="FB.logout();">Logout</a><br/>' );
+					}else{
+					}
+					/*FB.api('/me', function(user) { 
+						console.log( "user", user);
+						if (user) {
+							var image = document.getElementById('image');
+				            image.src = 'https://graph.facebook.com/' + user.id + '/picture';
+				            var name = document.getElementById('name');
+				            name.innerHTML = user.name
+						}
+					});*/
+				});
+
+		        };
+				
+				//writes the script tag that loads the facebook stuff.
+		        (function(d){
+		           var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+		           js = d.createElement('script'); js.id = id; js.async = true;
+		           js.src = "//connect.facebook.net/en_US/all.js";
+		           d.getElementsByTagName('head')[0].appendChild(js);
+		         }(document));
+		
+		      </script>
+			
+			<div id="fbLogin">
+				<div class="fb-login-button" data-scope="">
+			        Login with Facebook
+				</div>
+			</div>
+			
 			<a href="mailto:john.waggener@gmail.com" style="float:right;color:#fff;margin-right:65px">contact</a>
 			<div style="clear:both"></div>
 		</div>
@@ -61,7 +132,7 @@
 								+ "<div class='color-name'>"
 									+ "<span " 
 									+ "style='color:" + textColor + "' >"
-									+ items[i].get("color").name + "</span>"
+									+ items[i].get("color").name.replace("Fuck", "Yo") + "</span>"
 								+ "</div>"
 						  + "</div>";
 			  }

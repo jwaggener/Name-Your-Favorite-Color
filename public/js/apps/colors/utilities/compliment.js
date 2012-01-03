@@ -6,6 +6,60 @@ function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h}
 
 var aColor = "#b28d9f";//bright pink
 
+//pass in either #ffffff or rgb(255,255,255) for example
+function toHSL( color ){
+	
+	var color
+	var r, g, b
+	var h,s,l
+	var del_r, del_g, del_b
+	var min, max
+	var delMax
+	
+	color = toRGBhash( aColor );// returns { r:00, g:00, b:00 } for example
+	r = color.r/255;//example 0,1,3,.03,.0333
+	g = color.g/255;
+	b = color.b/255;
+	
+	min = Math.min(r,g,b);
+	max = Math.max(r,g,b);
+	delMax = max - min;
+	
+	l = (max + min) / 2;
+	
+	if (max == 0)
+	{
+		h = 0;
+		s = 0;
+	}else{
+		if ( l < 0.5 ){
+			s = delMax / (max + min);
+		}else{
+			s = delMax / (2 - max - min);
+		};
+
+		del_r = (((max - rDec) / 6) + (delMax / 2)) / delMax;
+		del_g = (((max - gDec) / 6) + (delMax / 2)) / delMax;
+		del_b = (((max - bDec) / 6) + (delMax / 2)) / delMax;
+
+		if (rDec == max){
+			h = del_b - del_g;
+		}else if (gDec == max){
+			h = (1 / 3) + del_r - del_b;
+		}else if (bDec == max){
+			h = (2 / 3) + del_g - del_r;
+		};
+		if (h < 0){
+			h += 1;
+		};
+		if (h > 1){
+			h -= 1;
+		};
+	};
+	
+	return { hue: h , saturation: s , lightness: l }; //{ hue: 1, saturation: .5 , lightness: .5 } for example
+}
+
 function compliment(aColor){
 	var color = toRGBhash( aColor );//{ r:00, g:00, b:00 }
 	var rDec = color.r/255;//0,1,3,.03,.0333

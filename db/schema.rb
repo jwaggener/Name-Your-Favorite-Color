@@ -10,11 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110815025116) do
+ActiveRecord::Schema.define(:version => 20111231002714) do
 
   create_table "colors", :force => true do |t|
     t.string   "name"
     t.string   "color"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "fb_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
